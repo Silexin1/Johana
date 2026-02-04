@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💌</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff0f5;
+    overflow: hidden;
+}
+
+#page1, #page2 {
+    width: 100%;
+    text-align: center;
+}
+
+#page2 {
+    display: none;
+}
+
+#enveloppe {
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 20px;
+    margin: 10px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#oui {
+    background: #ff5a8a;
+    color: white;
+}
+
+#oui:hover {
+    transform: scale(1.1);
+}
+
+#non {
+    position: absolute;
+    background: #cccccc;
+}
+
+img {
+    width: 80%;
+    max-width: 300px;
+    border-radius: 20px;
+    margin: 20px 0;
+}
+</style>
+</head>
+
+<body>
+
+<div id="page1">
+    <div id="enveloppe">💌</div>
+    <h1>Tu es disponible le 14 fev Johana ? :)</h1>
+    <button id="oui" onclick="oui()">OUI</button>
+    <button id="non">non</button>
+</div>
+
+<div id="page2">
+    
+    <img src="photo.jpg" alt="Notre photo">
+    <p>j’ai hâte de passer cette soirée avec toi</p>
+    <p>📍 Amiens</p>
+    <p>14 FEB Sat - 19:30 CET</p>
+</div>
+
+<script>
+// Bouton NON impossible à cliquer
+const boutonNon = document.getElementById("non");
+
+document.addEventListener("mousemove", function(e) {
+    const rect = boutonNon.getBoundingClientRect();
+
+    const distanceX = Math.abs(e.clientX - (rect.left + rect.width / 2));
+    const distanceY = Math.abs(e.clientY - (rect.top + rect.height / 2));
+
+    if (distanceX < 100 && distanceY < 60) {
+        const x = Math.random() * (window.innerWidth - rect.width);
+        const y = Math.random() * (window.innerHeight - rect.height);
+
+        boutonNon.style.left = x + "px";
+        boutonNon.style.top = y + "px";
+    }
+});
+
+function oui() {
+    document.getElementById("page1").style.display = "none";
+    document.getElementById("page2").style.display = "block";
+}
+</script>
+
+</body>
+</html>
